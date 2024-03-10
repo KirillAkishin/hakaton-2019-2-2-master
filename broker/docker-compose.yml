@@ -1,0 +1,15 @@
+version: '3'
+
+# docker rm $(docker ps -a -q) && docker volume prune -f
+
+services:
+  mysql:
+    image: mysql:8.0.17
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "qwerty"
+      MYSQL_DATABASE: hak
+    ports:
+      - '3306:3306'
+    volumes:
+      - './_sql/:/docker-entrypoint-initdb.d/'
